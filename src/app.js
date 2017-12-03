@@ -18,8 +18,6 @@ app.get('*', (req, res, next) => {
     </StaticRouter>,
   );
 
-  console.log(content);
-
   const html = `
     <!DOCTYPE html>
     <html lang="en">
