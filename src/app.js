@@ -15,12 +15,20 @@ app.get('*', (req, res, next) => {
 
   const branch = matchRoutes(Routes, req.path);
 
-  const promises = branch.map(({ route }) => {
-    if (!route.loadData) return null;
-    return route.loadData(store);
-  });
+  const promises = branch
+    .map(({ route }) => {
+      if (!route.loadData) return null;
+      return route.loadData(store);
+    })
+    .map(promise => {
+      if (promise) {
+        return new Promise((resolve, reject) => {
+          promise.then(resolve).catch(resolve);
+        });
+      }
+    });
 
-  Promise.all(promises).then(() => {
+  Promise.all(promises).then(results => {
     const context = {};
     const html = renderer(req, store, context);
     res.send(html);

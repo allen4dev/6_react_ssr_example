@@ -14,6 +14,7 @@ const Routes = [
       {
         ...Posts,
         path: '/posts',
+        exact: true,
       },
     ],
   },

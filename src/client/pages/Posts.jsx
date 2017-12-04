@@ -36,6 +36,7 @@ export class Posts extends Component {
         <div className="Posts">
           <h1>Posts</h1>
           <ul className="PostList">{this.props.items.map(this.renderPost)}</ul>
+          {this.props.error && <span>{this.props.error}</span>}
         </div>
       </Layout>
     );
@@ -44,7 +45,8 @@ export class Posts extends Component {
 
 function mapStateToProps({ posts }) {
   return {
-    items: posts,
+    items: posts.entities,
+    error: posts.error,
   };
 }
 

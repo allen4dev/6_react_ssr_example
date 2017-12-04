@@ -1,16 +1,21 @@
 import axios from 'axios';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const baseURL = 'https://jwsonplaceholder.typicode.com';
 
 const api = {
   posts: {
     async fetchPosts(page = 1) {
       const url = `${baseURL}/posts?_page=${page}`;
+      let result = null;
 
-      const response = await axios.get(url);
-      const posts = response.data;
+      try {
+        const response = await axios.get(url);
+        result = response.data;
+      } catch (error) {
+        result = { error: error.message };
+      }
 
-      return posts;
+      return result;
     },
   },
 };

@@ -5605,7 +5605,7 @@ module.exports = function (exec, skipClosing) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FETCH_POSTS = undefined;
+exports.FETCH_ERROR = exports.FETCH_POSTS = undefined;
 
 var _regenerator = __webpack_require__(62);
 
@@ -5616,6 +5616,7 @@ var _asyncToGenerator2 = __webpack_require__(63);
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 exports.setPosts = setPosts;
+exports.setError = setError;
 exports.fetchPosts = fetchPosts;
 
 var _api = __webpack_require__(247);
@@ -5625,11 +5626,19 @@ var _api2 = _interopRequireDefault(_api);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FETCH_POSTS = exports.FETCH_POSTS = 'FETCH_POSTS';
+var FETCH_ERROR = exports.FETCH_ERROR = 'FETCH_ERROR';
 
 function setPosts(posts) {
   return {
     type: FETCH_POSTS,
     payload: posts
+  };
+}
+
+function setError(error) {
+  return {
+    type: FETCH_ERROR,
+    payload: error || 'something goes wrong'
   };
 }
 
@@ -5640,7 +5649,7 @@ function fetchPosts() {
 
   return function () {
     var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(dispatch) {
-      var posts;
+      var result;
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5649,13 +5658,21 @@ function fetchPosts() {
               return _api2.default.posts.fetchPosts(page);
 
             case 2:
-              posts = _context.sent;
+              result = _context.sent;
 
-              dispatch(setPosts(posts));
+              if (!result.error) {
+                _context.next = 5;
+                break;
+              }
 
-              return _context.abrupt('return', posts);
+              return _context.abrupt('return', dispatch(setError(result.error)));
 
             case 5:
+
+              dispatch(setPosts(result));
+              return _context.abrupt('return', result);
+
+            case 7:
             case 'end':
               return _context.stop();
           }
@@ -28067,7 +28084,8 @@ var Routes = [(0, _extends3.default)({}, _App2.default, {
     path: '/',
     exact: true
   }), (0, _extends3.default)({}, _Posts2.default, {
-    path: '/posts'
+    path: '/posts',
+    exact: true
   })]
 })];
 
@@ -29120,6 +29138,11 @@ var Posts = exports.Posts = function (_Component) {
             'ul',
             { className: 'PostList' },
             this.props.items.map(this.renderPost)
+          ),
+          this.props.error && _react2.default.createElement(
+            'span',
+            null,
+            this.props.error
           )
         )
       );
@@ -29132,7 +29155,8 @@ function mapStateToProps(_ref3) {
   var posts = _ref3.posts;
 
   return {
-    items: posts
+    items: posts.entities,
+    error: posts.error
   };
 }
 
@@ -30465,33 +30489,46 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var baseURL = 'https://jsonplaceholder.typicode.com';
+var baseURL = 'https://jwsonplaceholder.typicode.com';
 
 var api = {
   posts: {
     fetchPosts: function () {
       var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
         var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-        var url, response, posts;
+        var url, result, response;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 url = baseURL + '/posts?_page=' + page;
-                _context.next = 3;
+                result = null;
+                _context.prev = 2;
+                _context.next = 5;
                 return _axios2.default.get(url);
 
-              case 3:
+              case 5:
                 response = _context.sent;
-                posts = response.data;
-                return _context.abrupt('return', posts);
 
-              case 6:
+                result = response.data;
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context['catch'](2);
+
+                result = { error: _context.t0.message };
+
+              case 12:
+                return _context.abrupt('return', result);
+
+              case 13:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 9]]);
       }));
 
       function fetchPosts() {
@@ -31495,11 +31532,13 @@ var _toConsumableArray2 = __webpack_require__(271);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
+var _redux = __webpack_require__(40);
+
 var _posts = __webpack_require__(120);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function postsReducer() {
+function entitiesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -31512,7 +31551,25 @@ function postsReducer() {
   }
 }
 
-exports.default = postsReducer;
+function errorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  if (action.type === _posts.FETCH_ERROR) {
+    return action.payload;
+  }
+
+  if (action.type === _posts.FETCH_POSTS) {
+    return null;
+  }
+
+  return state;
+}
+
+exports.default = (0, _redux.combineReducers)({
+  entities: entitiesReducer,
+  error: errorReducer
+});
 
 /***/ }),
 /* 271 */
