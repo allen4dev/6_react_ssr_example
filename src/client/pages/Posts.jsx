@@ -10,8 +10,8 @@ export class Posts extends Component {
     const { items } = this.props;
 
     if (items.length === 0) {
-      const posts = this.fetchData();
-      console.log('POSTS', posts);
+      console.log('FETCHING FROM CLIENT');
+      this.fetchData();
     }
   }
 
@@ -21,11 +21,21 @@ export class Posts extends Component {
     return await fetchPosts();
   };
 
+  renderPost(post) {
+    return (
+      <li key={post.id} className="Post">
+        <h4 className="Post-title">{post.title}</h4>
+        <p className="Post-body">{post.body}</p>
+      </li>
+    );
+  }
+
   render() {
     return (
       <Layout>
         <div className="Posts">
           <h1>Posts</h1>
+          <ul className="PostList">{this.props.items.map(this.renderPost)}</ul>
         </div>
       </Layout>
     );

@@ -12,7 +12,6 @@ export function setPosts(posts) {
 export function fetchPosts(page = 1) {
   return async dispatch => {
     const posts = await api.posts.fetchPosts(page);
-
     dispatch(setPosts(posts));
 
     return posts;
