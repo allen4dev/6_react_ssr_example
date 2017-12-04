@@ -48,6 +48,8 @@ function mapStateToProps({ posts }) {
   };
 }
 
-export default connect(mapStateToProps, {
-  fetchPosts,
-})(Posts);
+export default {
+  component: connect(mapStateToProps, {
+    fetchPosts,
+  })(Posts),
+};

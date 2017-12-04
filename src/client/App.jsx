@@ -1,16 +1,10 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 
-import Home from './pages/Home';
-import Posts from './pages/Posts';
-
-const App = () => {
-  return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/posts" component={Posts} />
-    </Switch>
-  );
+const App = props => {
+  return <div className="App">{renderRoutes(props.route.routes)}</div>;
 };
 
-export default App;
+export default {
+  component: App,
+};
