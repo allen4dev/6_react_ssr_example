@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://jwsonplaceholder.typicode.com';
+const baseURL = 'https://jsonplaceholder.typicode.com';
 
 const api = {
   posts: {

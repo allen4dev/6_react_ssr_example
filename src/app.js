@@ -31,6 +31,14 @@ app.get('*', (req, res, next) => {
   Promise.all(promises).then(results => {
     const context = {};
     const html = renderer(req, store, context);
+
+    if (context.url) {
+      return res.redirect(301, context.url);
+    }
+    if (context.notFound) {
+      res.status(404);
+    }
+
     res.send(html);
   });
 });
