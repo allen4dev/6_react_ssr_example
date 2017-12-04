@@ -52,4 +52,5 @@ export default {
   component: connect(mapStateToProps, {
     fetchPosts,
   })(Posts),
+  loadData: ({ dispatch }) => dispatch(fetchPosts()),
 };
