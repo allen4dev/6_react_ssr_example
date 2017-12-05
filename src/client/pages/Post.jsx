@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import { NavLink } from 'react-router-dom';
 
 import { fetchSingle } from './../actions/posts';
 
@@ -19,12 +21,30 @@ export class Post extends Component {
   };
 
   render() {
+    console.log('POST_PROPS', this.props);
     const { post } = this.props;
 
     return (
       <div className="Post">
         <h1 className="Post-title">{post.title}</h1>
         <p className="Post-body">{post.body}</p>
+
+        <ul className="Post-nav">
+          <NavLink
+            to={`/posts/${post.id}/comments`}
+            className="Post-link"
+            activeStyle={{ color: 'orange' }}>
+            Comments
+          </NavLink>
+          <NavLink
+            to={`/posts/${post.id}/user`}
+            className="Post-link"
+            activeStyle={{ color: 'orange' }}>
+            User
+          </NavLink>
+        </ul>
+
+        <div>{renderRoutes(this.props.route.routes)}</div>
       </div>
     );
   }

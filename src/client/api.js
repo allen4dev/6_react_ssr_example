@@ -31,6 +31,20 @@ const api = {
 
       return result;
     },
+    
+    async fetchComments(id) {
+      const url = `${baseURL}/posts/${id}/comments`;
+      let result;
+
+      try {
+        const response = await axios.get(url);
+        result = response.data;
+      } catch (error) {
+        result = { error: error.message };
+      }
+
+      return result
+    }
   },
 };
 

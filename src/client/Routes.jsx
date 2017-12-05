@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import NotFound from './pages/NotFound';
+import Comments from './containers/Comments';
+import User from './containers/User';
 
 const Routes = [
   {
@@ -21,6 +23,16 @@ const Routes = [
       {
         ...Post,
         path: '/posts/:id',
+        routes: [
+          {
+            ...Comments,
+            path: '/posts/:id/comments',
+          },
+          {
+            ...User,
+            path: '/posts/:id/user',
+          },
+        ],
       },
       {
         ...NotFound,
