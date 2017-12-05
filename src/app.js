@@ -16,9 +16,9 @@ app.get('*', (req, res, next) => {
   const branch = matchRoutes(Routes, req.path);
 
   const promises = branch
-    .map(({ route }) => {
+    .map(({ route, match }) => {
       if (!route.loadData) return null;
-      return route.loadData(store);
+      return route.loadData(store, match.params);
     })
     .map(promise => {
       if (promise) {

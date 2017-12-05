@@ -17,6 +17,20 @@ const api = {
 
       return result;
     },
+
+    async fetchSingle(id) {
+      const url = `${baseURL}/posts/${id}`;
+      let result;
+
+      try {
+        const response = await axios.get(url);
+        result = response.data;
+      } catch (error) {
+        result = { error: error.message };
+      }
+
+      return result;
+    },
   },
 };
 

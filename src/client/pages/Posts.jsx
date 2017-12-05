@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Layout from './../shared/Layout';
 
@@ -23,10 +24,20 @@ export class Posts extends Component {
 
   renderPost(post) {
     return (
-      <li key={post.id} className="Post">
+      <Link
+        to={`/posts/${post.id}`}
+        style={{
+          textDecoration: 'none',
+          color: 'black',
+          border: '1px solid black',
+          display: 'block',
+          marginBottom: '1em',
+        }}
+        key={post.id}
+        className="Post">
         <h4 className="Post-title">{post.title}</h4>
         <p className="Post-body">{post.body}</p>
-      </li>
+      </Link>
     );
   }
 

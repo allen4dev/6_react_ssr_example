@@ -1,6 +1,7 @@
 import App from './App';
 import Home from './pages/Home';
 import Posts from './pages/Posts';
+import Post from './pages/Post';
 import NotFound from './pages/NotFound';
 
 const Routes = [
@@ -16,6 +17,10 @@ const Routes = [
         ...Posts,
         path: '/posts',
         exact: true,
+      },
+      {
+        ...Post,
+        path: '/posts/:id',
       },
       {
         ...NotFound,

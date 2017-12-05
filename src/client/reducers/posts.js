@@ -1,11 +1,14 @@
 import { combineReducers } from 'redux';
 
-import { FETCH_POSTS, FETCH_ERROR } from './../actions/posts';
+import { FETCH_POSTS, FETCH_POST, FETCH_ERROR } from './../actions/posts';
 
 function entitiesReducer(state = [], action = {}) {
   switch (action.type) {
     case FETCH_POSTS:
       return [...state, ...action.payload];
+
+    case FETCH_POST:
+      return [...state, action.payload];
 
     default:
       return state;
