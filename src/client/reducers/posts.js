@@ -5,7 +5,8 @@ import { FETCH_POSTS, FETCH_POST, FETCH_ERROR } from './../actions/posts';
 function entitiesReducer(state = [], action = {}) {
   switch (action.type) {
     case FETCH_POSTS:
-      return [...state, ...action.payload];
+      // Just for simplicity
+      return action.payload;
 
     case FETCH_POST:
       return [...state, action.payload];

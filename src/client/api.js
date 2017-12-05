@@ -46,6 +46,21 @@ const api = {
       return result;
     },
   },
+  users: {
+    async fetchPosts(id) {
+      const url = `${baseURL}/posts?userId=${id}`;
+      let result;
+
+      try {
+        const response = await axios.get(url);
+        result = response.data;
+      } catch (error) {
+        result = { error: error.message };
+      }
+
+      return result;
+    },
+  },
 };
 
 export default api;

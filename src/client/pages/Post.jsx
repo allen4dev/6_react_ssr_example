@@ -25,6 +25,7 @@ export class Post extends Component {
 
     return (
       <div className="Post">
+        <NavLink to="/posts">Posts</NavLink>
         <h1 className="Post-title">{post.title}</h1>
         <p className="Post-body">{post.body}</p>
 

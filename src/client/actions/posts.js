@@ -63,3 +63,17 @@ export function fetchPostComments(id) {
     return result;
   };
 }
+
+// ToDo: Put this in users feature
+export function fetchUserPosts(uid) {
+  return async dispatch => {
+    const result = await api.users.fetchPosts(uid);
+
+    if (result.error) {
+      return dispatch(setError(result.error));
+    }
+
+    dispatch(setPosts(result));
+    return result;
+  };
+}
