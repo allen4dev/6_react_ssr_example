@@ -4,7 +4,7 @@ import Posts from './pages/Posts';
 import Post from './pages/Post';
 import NotFound from './pages/NotFound';
 import Comments from './containers/Comments';
-import User from './containers/User';
+import Overview from './containers/Overview';
 
 const Routes = [
   {
@@ -25,12 +25,13 @@ const Routes = [
         path: '/posts/:id',
         routes: [
           {
-            ...Comments,
-            path: '/posts/:id/comments',
+            ...Overview,
+            exact: true,
+            path: '/posts/:id',
           },
           {
-            ...User,
-            path: '/posts/:id/user',
+            ...Comments,
+            path: '/posts/:id/comments',
           },
         ],
       },

@@ -31,7 +31,7 @@ const api = {
 
       return result;
     },
-    
+
     async fetchComments(id) {
       const url = `${baseURL}/posts/${id}/comments`;
       let result;
@@ -43,8 +43,8 @@ const api = {
         result = { error: error.message };
       }
 
-      return result
-    }
+      return result;
+    },
   },
 };
 

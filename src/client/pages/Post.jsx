@@ -21,7 +21,6 @@ export class Post extends Component {
   };
 
   render() {
-    console.log('POST_PROPS', this.props);
     const { post } = this.props;
 
     return (
@@ -31,16 +30,17 @@ export class Post extends Component {
 
         <ul className="Post-nav">
           <NavLink
+            to={`/posts/${post.id}`}
+            exact
+            className="Post-link"
+            activeStyle={{ color: 'orange' }}>
+            Overview
+          </NavLink>
+          <NavLink
             to={`/posts/${post.id}/comments`}
             className="Post-link"
             activeStyle={{ color: 'orange' }}>
             Comments
-          </NavLink>
-          <NavLink
-            to={`/posts/${post.id}/user`}
-            className="Post-link"
-            activeStyle={{ color: 'orange' }}>
-            User
           </NavLink>
         </ul>
 
