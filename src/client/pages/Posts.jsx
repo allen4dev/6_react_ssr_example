@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 
 import Layout from './../shared/Layout';
 
@@ -42,19 +41,10 @@ export class Posts extends Component {
     );
   }
 
-  renderHead() {
-    return (
-      <Helmet>
-        <title>PostList</title>
-      </Helmet>
-    );
-  }
-
   render() {
     return (
-      <Layout>
+      <Layout options={{ title: `${this.props.items.length} posts loaded` }}>
         <div className="Posts">
-          {this.renderHead()}
           <h1>Posts</h1>
           <ul className="PostList">{this.props.items.map(this.renderPost)}</ul>
           {this.props.error && <span>{this.props.error}</span>}

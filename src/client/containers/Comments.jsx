@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import { fetchPostComments } from './../actions/posts';
 
@@ -22,6 +23,9 @@ class Comments extends Component {
   render() {
     return (
       <div className="Comments">
+        <Helmet>
+          <title>Comments</title>
+        </Helmet>
         {this.props.items.map(comment => (
           <li key={comment.id}>
             <h4 className="Comment-name">{comment.name}</h4>

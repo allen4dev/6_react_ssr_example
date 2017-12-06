@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 
 import { fetchUserPosts, fetchPostComments } from './../actions/posts';
 
@@ -79,6 +80,9 @@ class Overview extends Component {
   render() {
     return (
       <div className="Overview">
+        <Helmet>
+          <title>Overview</title>
+        </Helmet>
         <h2>Posts</h2>
         {this.renderPosts()}
         <h2>Comments</h2>

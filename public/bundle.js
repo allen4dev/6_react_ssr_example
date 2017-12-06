@@ -5549,6 +5549,74 @@ exports.f = __webpack_require__(13) ? gOPD : function getOwnPropertyDescriptor(O
 
 /***/ }),
 /* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactHelmet = __webpack_require__(237);
+
+var _reactRouterDom = __webpack_require__(26);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Layout = function Layout(_ref) {
+  var children = _ref.children,
+      options = _ref.options;
+
+  function renderHead() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    return _react2.default.createElement(
+      _reactHelmet.Helmet,
+      null,
+      _react2.default.createElement(
+        'title',
+        null,
+        options.title
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'Layout' },
+    renderHead(options),
+    _react2.default.createElement(
+      'header',
+      { className: 'Header' },
+      _react2.default.createElement(
+        _reactRouterDom.NavLink,
+        { exact: true, to: '/', activeStyle: { color: 'darkorange' } },
+        'Home'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.NavLink,
+        { to: '/posts', activeStyle: { color: 'darkorange' } },
+        'Posts'
+      )
+    ),
+    children,
+    _react2.default.createElement(
+      'footer',
+      { className: 'Footer' },
+      'Footer here'
+    )
+  );
+};
+
+exports.default = Layout;
+
+/***/ }),
+/* 113 */
 /***/ (function(module, exports) {
 
 exports.__esModule = true;
@@ -5615,56 +5683,6 @@ var HTML_TAG_MAP = exports.HTML_TAG_MAP = Object.keys(REACT_TAG_MAP).reduce(func
 var SELF_CLOSING_TAGS = exports.SELF_CLOSING_TAGS = [TAG_NAMES.NOSCRIPT, TAG_NAMES.SCRIPT, TAG_NAMES.STYLE];
 
 var HELMET_ATTRIBUTE = exports.HELMET_ATTRIBUTE = "data-react-helmet";
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(26);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Layout = function Layout(_ref) {
-  var children = _ref.children;
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'Layout' },
-    _react2.default.createElement(
-      'header',
-      { className: 'Header' },
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { exact: true, to: '/', activeStyle: { color: 'darkorange' } },
-        'Home'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/posts', activeStyle: { color: 'darkorange' } },
-        'Posts'
-      )
-    ),
-    children,
-    _react2.default.createElement(
-      'footer',
-      { className: 'Footer' },
-      'Footer here'
-    )
-  );
-};
-
-exports.default = Layout;
 
 /***/ }),
 /* 114 */
@@ -28590,9 +28608,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactHelmet = __webpack_require__(237);
-
-var _Layout = __webpack_require__(113);
+var _Layout = __webpack_require__(112);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -28607,28 +28623,14 @@ var Home = exports.Home = function (_Component) {
   }
 
   (0, _createClass3.default)(Home, [{
-    key: 'renderHead',
-    value: function renderHead() {
-      return _react2.default.createElement(
-        _reactHelmet.Helmet,
-        null,
-        _react2.default.createElement(
-          'title',
-          null,
-          'Homepage'
-        )
-      );
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         _Layout2.default,
-        null,
+        { options: { title: 'Homepage' } },
         _react2.default.createElement(
           'div',
           { className: 'Home' },
-          this.renderHead(),
           _react2.default.createElement(
             'h1',
             null,
@@ -29335,7 +29337,7 @@ var _deepEqual2 = _interopRequireDefault(_deepEqual);
 
 var _HelmetUtils = __webpack_require__(244);
 
-var _HelmetConstants = __webpack_require__(112);
+var _HelmetConstants = __webpack_require__(113);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29991,7 +29993,7 @@ var _objectAssign = __webpack_require__(17);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _HelmetConstants = __webpack_require__(112);
+var _HelmetConstants = __webpack_require__(113);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30562,9 +30564,7 @@ var _reactRedux = __webpack_require__(24);
 
 var _reactRouterDom = __webpack_require__(26);
 
-var _reactHelmet = __webpack_require__(237);
-
-var _Layout = __webpack_require__(113);
+var _Layout = __webpack_require__(112);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -30649,28 +30649,14 @@ var Posts = exports.Posts = function (_Component) {
       );
     }
   }, {
-    key: 'renderHead',
-    value: function renderHead() {
-      return _react2.default.createElement(
-        _reactHelmet.Helmet,
-        null,
-        _react2.default.createElement(
-          'title',
-          null,
-          'PostList'
-        )
-      );
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         _Layout2.default,
-        null,
+        { options: { title: this.props.items.length + ' posts loaded' } },
         _react2.default.createElement(
           'div',
           { className: 'Posts' },
-          this.renderHead(),
           _react2.default.createElement(
             'h1',
             null,
@@ -33381,6 +33367,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(24);
 
+var _reactHelmet = __webpack_require__(237);
+
 var _posts = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33460,6 +33448,15 @@ var Comments = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'Comments' },
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'Comments'
+          )
+        ),
         this.props.items.map(function (comment) {
           return _react2.default.createElement(
             'li',
@@ -33557,6 +33554,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRedux = __webpack_require__(24);
 
 var _reactRouterDom = __webpack_require__(26);
+
+var _reactHelmet = __webpack_require__(237);
 
 var _posts = __webpack_require__(37);
 
@@ -33711,6 +33710,15 @@ var Overview = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'Overview' },
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'Overview'
+          )
+        ),
         _react2.default.createElement(
           'h2',
           null,

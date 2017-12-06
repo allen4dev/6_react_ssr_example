@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Helmet } from 'react-helmet';
+import serialize from 'serialize-javascript';
 
 import Routes from './../client/Routes';
 
@@ -30,7 +31,7 @@ function renderer(req, store, context) {
     <body>
       <div id="root">${content}</div>
       <script>
-        window.INITIAL_STATE = ${JSON.stringify(store.getState())}
+        window.INITIAL_STATE = ${serialize(store.getState())}
       </script>
       <script src="/bundle.js"></script>
     </body>

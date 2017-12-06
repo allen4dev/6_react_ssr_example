@@ -11632,6 +11632,74 @@ exports.f = __webpack_require__(15) ? gOPD : function getOwnPropertyDescriptor(O
 /* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactHelmet = __webpack_require__(155);
+
+var _reactRouterDom = __webpack_require__(43);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Layout = function Layout(_ref) {
+  var children = _ref.children,
+      options = _ref.options;
+
+  function renderHead() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    return _react2.default.createElement(
+      _reactHelmet.Helmet,
+      null,
+      _react2.default.createElement(
+        'title',
+        null,
+        options.title
+      )
+    );
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'Layout' },
+    renderHead(options),
+    _react2.default.createElement(
+      'header',
+      { className: 'Header' },
+      _react2.default.createElement(
+        _reactRouterDom.NavLink,
+        { exact: true, to: '/', activeStyle: { color: 'darkorange' } },
+        'Home'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.NavLink,
+        { to: '/posts', activeStyle: { color: 'darkorange' } },
+        'Posts'
+      )
+    ),
+    children,
+    _react2.default.createElement(
+      'footer',
+      { className: 'Footer' },
+      'Footer here'
+    )
+  );
+};
+
+exports.default = Layout;
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
 exports.__esModule = true;
 exports.Helmet = undefined;
 
@@ -11657,7 +11725,7 @@ var _deepEqual2 = _interopRequireDefault(_deepEqual);
 
 var _HelmetUtils = __webpack_require__(318);
 
-var _HelmetConstants = __webpack_require__(155);
+var _HelmetConstants = __webpack_require__(156);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11926,7 +11994,7 @@ exports.Helmet = HelmetExport;
 exports.default = HelmetExport;
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports) {
 
 exports.__esModule = true;
@@ -11993,56 +12061,6 @@ var HTML_TAG_MAP = exports.HTML_TAG_MAP = Object.keys(REACT_TAG_MAP).reduce(func
 var SELF_CLOSING_TAGS = exports.SELF_CLOSING_TAGS = [TAG_NAMES.NOSCRIPT, TAG_NAMES.SCRIPT, TAG_NAMES.STYLE];
 
 var HELMET_ATTRIBUTE = exports.HELMET_ATTRIBUTE = "data-react-helmet";
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(43);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Layout = function Layout(_ref) {
-  var children = _ref.children;
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'Layout' },
-    _react2.default.createElement(
-      'header',
-      { className: 'Header' },
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { exact: true, to: '/', activeStyle: { color: 'darkorange' } },
-        'Home'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/posts', activeStyle: { color: 'darkorange' } },
-        'Posts'
-      )
-    ),
-    children,
-    _react2.default.createElement(
-      'footer',
-      { className: 'Footer' },
-      'Footer here'
-    )
-  );
-};
-
-exports.default = Layout;
 
 /***/ }),
 /* 157 */
@@ -14107,7 +14125,7 @@ function setComments(comments) {
 
 
 
-var hyphenate = __webpack_require__(406);
+var hyphenate = __webpack_require__(404);
 
 var msPattern = /^ms-/;
 
@@ -14175,7 +14193,7 @@ module.exports = memoizeStringOnly;
 
 exports.__esModule = true;
 
-var _from = __webpack_require__(414);
+var _from = __webpack_require__(413);
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -14235,7 +14253,7 @@ var _renderer = __webpack_require__(400);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
-var _configStore = __webpack_require__(410);
+var _configStore = __webpack_require__(409);
 
 var _configStore2 = _interopRequireDefault(_configStore);
 
@@ -29072,9 +29090,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactHelmet = __webpack_require__(154);
-
-var _Layout = __webpack_require__(156);
+var _Layout = __webpack_require__(154);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -29089,28 +29105,14 @@ var Home = exports.Home = function (_Component) {
   }
 
   (0, _createClass3.default)(Home, [{
-    key: 'renderHead',
-    value: function renderHead() {
-      return _react2.default.createElement(
-        _reactHelmet.Helmet,
-        null,
-        _react2.default.createElement(
-          'title',
-          null,
-          'Homepage'
-        )
-      );
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         _Layout2.default,
-        null,
+        { options: { title: 'Homepage' } },
         _react2.default.createElement(
           'div',
           { className: 'Home' },
-          this.renderHead(),
           _react2.default.createElement(
             'h1',
             null,
@@ -30056,7 +30058,7 @@ var _objectAssign = __webpack_require__(27);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _HelmetConstants = __webpack_require__(155);
+var _HelmetConstants = __webpack_require__(156);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33144,9 +33146,7 @@ var _reactRedux = __webpack_require__(46);
 
 var _reactRouterDom = __webpack_require__(43);
 
-var _reactHelmet = __webpack_require__(154);
-
-var _Layout = __webpack_require__(156);
+var _Layout = __webpack_require__(154);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -33231,28 +33231,14 @@ var Posts = exports.Posts = function (_Component) {
       );
     }
   }, {
-    key: 'renderHead',
-    value: function renderHead() {
-      return _react2.default.createElement(
-        _reactHelmet.Helmet,
-        null,
-        _react2.default.createElement(
-          'title',
-          null,
-          'PostList'
-        )
-      );
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         _Layout2.default,
-        null,
+        { options: { title: this.props.items.length + ' posts loaded' } },
         _react2.default.createElement(
           'div',
           { className: 'Posts' },
-          this.renderHead(),
           _react2.default.createElement(
             'h1',
             null,
@@ -37423,6 +37409,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(46);
 
+var _reactHelmet = __webpack_require__(155);
+
 var _posts = __webpack_require__(48);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -37502,6 +37490,15 @@ var Comments = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'Comments' },
+        _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'Comments'
+          )
+        ),
         this.props.items.map(function (comment) {
           return _react2.default.createElement(
             'li',
@@ -37599,6 +37596,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRedux = __webpack_require__(46);
 
 var _reactRouterDom = __webpack_require__(43);
+
+var _reactHelmet = __webpack_require__(155);
 
 var _posts = __webpack_require__(48);
 
@@ -37754,6 +37753,15 @@ var Overview = function (_Component) {
         'div',
         { className: 'Overview' },
         _react2.default.createElement(
+          _reactHelmet.Helmet,
+          null,
+          _react2.default.createElement(
+            'title',
+            null,
+            'Overview'
+          )
+        ),
+        _react2.default.createElement(
           'h2',
           null,
           'Posts'
@@ -37843,15 +37851,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _stringify = __webpack_require__(401);
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(403);
+var _server = __webpack_require__(401);
 
 var _reactRedux = __webpack_require__(46);
 
@@ -37859,7 +37863,11 @@ var _reactRouterDom = __webpack_require__(43);
 
 var _reactRouterConfig = __webpack_require__(64);
 
-var _reactHelmet = __webpack_require__(154);
+var _reactHelmet = __webpack_require__(155);
+
+var _serializeJavascript = __webpack_require__(408);
+
+var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
 var _Routes = __webpack_require__(149);
 
@@ -37884,7 +37892,7 @@ function renderer(req, store, context) {
 
   var helmet = _reactHelmet.Helmet.renderStatic();
 
-  var html = '\n    <!DOCTYPE html>\n    <html lang="en">\n    <head>\n      <meta charset="UTF-8"/>\n      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n      <meta http-equiv="X-UA-Compatible" content="ie=edge"/>\n      <title>' + helmet.title.toString() + '</title>\n    </head>\n    <body>\n      <div id="root">' + content + '</div>\n      <script>\n        window.INITIAL_STATE = ' + (0, _stringify2.default)(store.getState()) + '\n      </script>\n      <script src="/bundle.js"></script>\n    </body>\n    </html>\n  ';
+  var html = '\n    <!DOCTYPE html>\n    <html lang="en">\n    <head>\n      <meta charset="UTF-8"/>\n      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n      <meta http-equiv="X-UA-Compatible" content="ie=edge"/>\n      <title>' + helmet.title.toString() + '</title>\n    </head>\n    <body>\n      <div id="root">' + content + '</div>\n      <script>\n        window.INITIAL_STATE = ' + (0, _serializeJavascript2.default)(store.getState()) + '\n      </script>\n      <script src="/bundle.js"></script>\n    </body>\n    </html>\n  ';
 
   return html;
 }
@@ -37895,45 +37903,28 @@ exports.default = renderer;
 /* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(402), __esModule: true };
-
-/***/ }),
-/* 402 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var core = __webpack_require__(3);
-var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
-module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
-  return $JSON.stringify.apply($JSON, arguments);
-};
-
-
-/***/ }),
-/* 403 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-module.exports = __webpack_require__(404);
+module.exports = __webpack_require__(402);
 
 
 /***/ }),
-/* 404 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(405);
+  module.exports = __webpack_require__(403);
 } else {
-  module.exports = __webpack_require__(407);
+  module.exports = __webpack_require__(405);
 }
 
 
 /***/ }),
-/* 405 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37984,7 +37975,7 @@ var Ba=function(a){function b(g,c){if(!(this instanceof b))throw new TypeError("
 
 
 /***/ }),
-/* 406 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38020,7 +38011,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 407 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38050,7 +38041,7 @@ var hyphenateStyleName = __webpack_require__(183);
 var memoizeStringOnly = __webpack_require__(184);
 var warning = __webpack_require__(66);
 var checkPropTypes = __webpack_require__(89);
-var camelizeStyleName = __webpack_require__(408);
+var camelizeStyleName = __webpack_require__(406);
 var stream = __webpack_require__(16);
 
 /**
@@ -40617,7 +40608,7 @@ module.exports = server_node;
 
 
 /***/ }),
-/* 408 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40632,7 +40623,7 @@ module.exports = server_node;
 
 
 
-var camelize = __webpack_require__(409);
+var camelize = __webpack_require__(407);
 
 var msPattern = /^-ms-/;
 
@@ -40660,7 +40651,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 409 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40695,7 +40686,131 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 410 */
+/* 408 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+Copyrights licensed under the New BSD License.
+See the accompanying LICENSE file for terms.
+*/
+
+
+
+// Generate an internal UID to make the regexp pattern harder to guess.
+var UID                 = Math.floor(Math.random() * 0x10000000000).toString(16);
+var PLACE_HOLDER_REGEXP = new RegExp('"@__(F|R|D)-' + UID + '-(\\d+)__@"', 'g');
+
+var IS_NATIVE_CODE_REGEXP = /\{\s*\[native code\]\s*\}/g;
+var UNSAFE_CHARS_REGEXP   = /[<>\/\u2028\u2029]/g;
+
+// Mapping of unsafe HTML and invalid JavaScript line terminator chars to their
+// Unicode char counterparts which are safe to use in JavaScript strings.
+var ESCAPED_CHARS = {
+    '<'     : '\\u003C',
+    '>'     : '\\u003E',
+    '/'     : '\\u002F',
+    '\u2028': '\\u2028',
+    '\u2029': '\\u2029'
+};
+
+function escapeUnsafeChars(unsafeChar) {
+    return ESCAPED_CHARS[unsafeChar];
+}
+
+module.exports = function serialize(obj, options) {
+    options || (options = {});
+
+    // Backwards-compatability for `space` as the second argument.
+    if (typeof options === 'number' || typeof options === 'string') {
+        options = {space: options};
+    }
+
+    var functions = [];
+    var regexps   = [];
+    var dates     = [];
+
+    // Returns placeholders for functions and regexps (identified by index)
+    // which are later replaced by their string representation.
+    function replacer(key, value) {
+        if (!value) {
+            return value;
+        }
+
+        // If the value is an object w/ a toJSON method, toJSON is called before
+        // the replacer runs, so we use this[key] to get the non-toJSONed value.
+        var origValue = this[key];
+        var type = typeof origValue;
+
+        if (type === 'object') {
+            if(origValue instanceof RegExp) {
+                return '@__R-' + UID + '-' + (regexps.push(origValue) - 1) + '__@';
+            }
+
+            if(origValue instanceof Date) {
+                return '@__D-' + UID + '-' + (dates.push(origValue) - 1) + '__@';
+            }
+        }
+
+        if (type === 'function') {
+            return '@__F-' + UID + '-' + (functions.push(origValue) - 1) + '__@';
+        }
+
+        return value;
+    }
+
+    var str;
+
+    // Creates a JSON string representation of the value.
+    // NOTE: Node 0.12 goes into slow mode with extra JSON.stringify() args.
+    if (options.isJSON && !options.space) {
+        str = JSON.stringify(obj);
+    } else {
+        str = JSON.stringify(obj, options.isJSON ? null : replacer, options.space);
+    }
+
+    // Protects against `JSON.stringify()` returning `undefined`, by serializing
+    // to the literal string: "undefined".
+    if (typeof str !== 'string') {
+        return String(str);
+    }
+
+    // Replace unsafe HTML and invalid JavaScript line terminator chars with
+    // their safe Unicode char counterpart. This _must_ happen before the
+    // regexps and functions are serialized and added back to the string.
+    str = str.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+
+    if (functions.length === 0 && regexps.length === 0 && dates.length === 0) {
+        return str;
+    }
+
+    // Replaces all occurrences of function, regexp and date placeholders in the
+    // JSON string with their string representations. If the original value can
+    // not be found, then `undefined` is used.
+    return str.replace(PLACE_HOLDER_REGEXP, function (match, type, valueIndex) {
+        if (type === 'D') {
+            return "new Date(\"" + dates[valueIndex].toISOString() + "\")";
+        }
+
+        if (type === 'R') {
+            return regexps[valueIndex].toString();
+        }
+
+        var fn           = functions[valueIndex];
+        var serializedFn = fn.toString();
+
+        if (IS_NATIVE_CODE_REGEXP.test(serializedFn)) {
+            throw new TypeError('Serializing native function: ' + fn.name);
+        }
+
+        return serializedFn;
+    });
+}
+
+
+/***/ }),
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40707,11 +40822,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(47);
 
-var _reduxThunk = __webpack_require__(411);
+var _reduxThunk = __webpack_require__(410);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _rootReducer = __webpack_require__(412);
+var _rootReducer = __webpack_require__(411);
 
 var _rootReducer2 = _interopRequireDefault(_rootReducer);
 
@@ -40727,7 +40842,7 @@ function configStore() {
 exports.default = configStore;
 
 /***/ }),
-/* 411 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40756,7 +40871,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 exports['default'] = thunk;
 
 /***/ }),
-/* 412 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40768,11 +40883,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(47);
 
-var _posts = __webpack_require__(413);
+var _posts = __webpack_require__(412);
 
 var _posts2 = _interopRequireDefault(_posts);
 
-var _comments = __webpack_require__(418);
+var _comments = __webpack_require__(417);
 
 var _comments2 = _interopRequireDefault(_comments);
 
@@ -40786,7 +40901,7 @@ var rootReducer = (0, _redux.combineReducers)({
 exports.default = rootReducer;
 
 /***/ }),
-/* 413 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40844,22 +40959,22 @@ exports.default = (0, _redux.combineReducers)({
 });
 
 /***/ }),
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(414), __esModule: true };
+
+/***/ }),
 /* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(415), __esModule: true };
-
-/***/ }),
-/* 415 */
-/***/ (function(module, exports, __webpack_require__) {
-
 __webpack_require__(70);
-__webpack_require__(416);
+__webpack_require__(415);
 module.exports = __webpack_require__(3).Array.from;
 
 
 /***/ }),
-/* 416 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40870,7 +40985,7 @@ var toObject = __webpack_require__(54);
 var call = __webpack_require__(114);
 var isArrayIter = __webpack_require__(115);
 var toLength = __webpack_require__(76);
-var createProperty = __webpack_require__(417);
+var createProperty = __webpack_require__(416);
 var getIterFn = __webpack_require__(116);
 
 $export($export.S + $export.F * !__webpack_require__(121)(function (iter) { Array.from(iter); }), 'Array', {
@@ -40903,7 +41018,7 @@ $export($export.S + $export.F * !__webpack_require__(121)(function (iter) { Arra
 
 
 /***/ }),
-/* 417 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40918,7 +41033,7 @@ module.exports = function (object, index, value) {
 
 
 /***/ }),
-/* 418 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
